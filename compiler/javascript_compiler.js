@@ -1,6 +1,6 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
-let file = 'compiler/python.py'
+let file = 'compiler/javascript.js'
 
 function compile(code){
     let result  = ""
@@ -15,7 +15,7 @@ function compile(code){
         //console.error('Error writing to file:', err);
     }
     try {
-        const stdout = execSync(`python3 ${file}`);
+        const stdout = execSync(`node ${file}`);
         // console.log(`stdout: ${stdout.toString()}`);
         result = stdout.toString()
       } catch (error) {

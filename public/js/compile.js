@@ -1,5 +1,21 @@
 let compile_button = document.getElementById("compile_button")
+let language_change = document.getElementById("language");
+const lang_key = [
+    ["js", 'console.log("Hello World!")'],
+    ["python", 'print("Hello World!")']
 
+  ];
+let lang_map = new Map(lang_key)
+
+// language_change.addEventListener("click", (e)=>{
+//     console.log("lang changed")
+//     let lang = e.target.value
+//     let input = document.getElementById("code")
+//     console.log(lang)
+//     if(lang_map.has(lang)){
+//         input.value = lang_map.get(lang)
+//     }
+// });
 if(compile_button){
     compile_button.addEventListener("click", (e)=>{
         let code = document.getElementById("code");
@@ -39,4 +55,8 @@ if(compile_button){
                 alert("Please select a language")
         }
     })
+}
+
+function changeLang(){
+    console.log(language_change.target.value)
 }

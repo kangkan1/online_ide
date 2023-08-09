@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
- const python = require('../compiler/python_compiler')
+const python = require('../compiler/python_compiler');
+const javascript = require('../compiler/javascript_compiler')
 // import {python_compiler} from '../compiler/python_compiler';
 
 module.exports.home = function(req, res){
@@ -18,8 +19,12 @@ module.exports.compile = function(req, res){
     if(body.language === 'python'){
         let compile = python.compile(body.code)
         return res.send({status:compile.status, result:compile.result})
-    }else{
-        return res.send({status:'fail', result:'Currently configured only for python'})
+    }else if(body.language === 'js'){
+        let compile = javascript.compile(body.code)
+        return res.send({status:compile.status, result:compile.result})
+    }
+    else{
+        return res.send({status:'fail', result:'Currently configured only for python and javascript'})
     }
     
 
