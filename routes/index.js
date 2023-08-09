@@ -7,6 +7,7 @@ const userController = require('../controllers/user_controller')
 console.log('router loaded')
 
 router.get('/', homeController.home)
+router.post('/compile', homeController.compile)
 router.use('/users', require('./users'))
 
 module.exports = router
