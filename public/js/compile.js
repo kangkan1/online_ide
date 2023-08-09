@@ -58,5 +58,13 @@ if(compile_button){
 }
 
 function changeLang(){
-    console.log(language_change.target.value)
+    let lang_selected = document.getElementById("language");
+    let code = document.getElementById("code");
+    if(lang_selected){
+        if(lang_map.has(lang_selected.value)){
+            code.value = lang_map.get(lang_selected.value)
+        }else{
+            code.value = "//Code goes here......"
+        }
+    }
 }
