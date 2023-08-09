@@ -1,5 +1,8 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
+ const python = require('../compiler/python_compiler')
+// import {python_compiler} from '../compiler/python_compiler';
+
 module.exports.home = function(req, res){
     //return res.end('<h1>Running</h1>');
     return res.render('home', {title: "Home"})
@@ -7,26 +10,17 @@ module.exports.home = function(req, res){
 
 module.exports.compile = function(req, res){
     //return res.end('<h1>Running</h1>');
-    console.log(req.body)
+    // console.log(req.body)
     let body = req.body
+    
     let result  = ""
     let status = "ok"
-    try {
-        fs.writeFileSync('compiler/python.py', body.code);
-        //console.log('Successfully wrote to file');
-    } catch (err) {
-        //console.error('Error writing to file:', err);
+    if(body.language === 'python'){
+        let compile = python.compile(body.code)
+        return res.send({status:compile.status, result:compile.result})
+    }else{
+        return res.send({status:'fail', result:'Currently configured only for python'})
     }
-    try {
-        const stdout = execSync('python3 compiler/python.py');
-        console.log(`stdout: ${stdout.toString()}`);
-        result = stdout.toString()
-      } catch (error) {
-        status = "fail"
-        result = error.toString('utf8')
-        console.error(`Error executing command: ${error}`);
-      }
     
-    return res.send({status:status, result:result})
-    // return res.render('home', {title: "Home"})
+
 }

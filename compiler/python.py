@@ -1,4 +1,5 @@
-for i in range(3):
+for i in range(4):
   print(i)
-arr1 = [1,2,"2"]
-print(arr)
+arr = [1,2,4, 'd']
+print(','.join([str(item) for item in arr]))
+print(str(arr))
