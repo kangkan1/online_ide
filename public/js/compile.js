@@ -4,6 +4,7 @@ if(compile_button){
     compile_button.addEventListener("click", (e)=>{
         let code = document.getElementById("code");
         let language = document.getElementById("language");
+        let result = document.getElementById("result");
         
         if(code && language && language.value !== "Select"){
             let data = {
@@ -19,7 +20,16 @@ if(compile_button){
                 if (this.readyState == 4 && this.status == 200) {
                 // Typical action to be performed when the document is ready:
                 // document.getElementById("demo").innerHTML = xhttp.responseText;
-                console.log(xhttp.responseText)
+                    console.log(xhttp.responseText)
+                    let response = JSON.parse(xhttp.responseText)
+                    if(response.status === 'ok'){
+                        result.value = response.result
+                        result.style.color = "green"
+                    }else if(response.status === 'fail'){
+                        result.value = response.result
+                        result.style.color = 'red'
+                    }
+                
                 }
             };
             
