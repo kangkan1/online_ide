@@ -2,7 +2,13 @@ let compile_button = document.getElementById("compile_button")
 let language_change = document.getElementById("language");
 const lang_key = [
     ["js", 'console.log("Hello World!")'],
-    ["python", 'print("Hello World!")']
+    ["python", 'print("Hello World!")'],
+    ['java', `//Code goes here......
+    class Main{
+        public static void main(String []args){
+            System.out.println("Hello World!");
+        }
+    }`]
 
   ];
 let lang_map = new Map(lang_key)
