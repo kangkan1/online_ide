@@ -20,6 +20,16 @@ const lang_key = [
       cout << "Hello World!"<<endl;
       return 0;
     }`
+    ],
+    [
+        'c',
+        `//Code goes here......
+        #include <stdio.h>
+        
+        int main(){
+            printf("Hello World!");
+            return 0;
+        }`
     ]
 
   ];
