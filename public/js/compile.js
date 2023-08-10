@@ -3,12 +3,24 @@ let language_change = document.getElementById("language");
 const lang_key = [
     ["js", 'console.log("Hello World!")'],
     ["python", 'print("Hello World!")'],
-    ['java', `//Code goes here......
+    ['java', `
+    // class name should be Main
+    //Code goes here......
     class Main{
         public static void main(String []args){
             System.out.println("Hello World!");
         }
-    }`]
+    }`],
+    ['cpp', 
+    `//Code goes here......
+    #include <iostream>
+    using namespace std;
+    
+    int main() {
+      cout << "Hello World!"<<endl;
+      return 0;
+    }`
+    ]
 
   ];
 let lang_map = new Map(lang_key)

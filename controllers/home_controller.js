@@ -3,6 +3,7 @@ const fs = require('fs');
 const python = require('../compiler/python_compiler');
 const javascript = require('../compiler/javascript_compiler');
 const java = require('../compiler/java_compiler');
+const cpp = require('../compiler/cpp_compiler');
 // import {python_compiler} from '../compiler/python_compiler';
 
 module.exports.home = function(req, res){
@@ -25,6 +26,9 @@ module.exports.compile = function(req, res){
         return res.send({status:compile.status, result:compile.result})
     }else if(body.language === 'java'){
         let compile = java.compile(body.code)
+        return res.send({status:compile.status, result:compile.result})
+    }else if(body.language === 'cpp'){
+        let compile = cpp.compile(body.code)
         return res.send({status:compile.status, result:compile.result})
     }
     else{
