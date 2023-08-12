@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
-let file = 'compiler/cplusplus.cpp'
+let file = 'compiler/lang/cplusplus.cpp'
+let folder = 'compiler/lang';
 
 function compile(code){
     let result  = ""
@@ -15,7 +16,7 @@ function compile(code){
         //console.error('Error writing to file:', err);
     }
     try {
-        const stdout = execSync(`cd "compiler" &&  g++ cplusplus.cpp -o cplusplus.out && ./cplusplus.out`);
+        const stdout = execSync(`cd ${folder} &&  g++ cplusplus.cpp -o cplusplus.out && ./cplusplus.out`);
         // console.log(`stdout: ${stdout.toString()}`);
         result = stdout.toString()
       } catch (error) {

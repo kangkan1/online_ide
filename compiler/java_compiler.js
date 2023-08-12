@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
-let file = 'compiler/Main.java'
+let file = 'compiler/lang/Main.java'
+let folder = 'compiler/lang';
 
 function compile(code){
     let result  = ""
@@ -16,7 +17,7 @@ function compile(code){
     }
     try {
         console.log(`javac ${file} && java Main`)
-        const stdout = execSync(`cd "compiler" &&  javac Main.java && java Main`);
+        const stdout = execSync(`cd ${folder} &&  javac Main.java && java Main`);
         // console.log(`stdout: ${stdout.toString()}`);
         result = stdout.toString()
       } catch (error) {

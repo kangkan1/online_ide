@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
-let file = 'compiler/python.py'
+let file = 'compiler/lang/python.py'
+let folder = 'compiler/lang';
 
 function compile(code){
     let result  = ""

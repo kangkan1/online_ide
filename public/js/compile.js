@@ -6,6 +6,7 @@ let lang_ace_arr = [
     ['cpp', "ace/mode/c_cpp"],
     ['java', "ace/mode/java"],
     ['js', "ace/mode/javascript"],
+    ['php', "ace/mode/php"],
     ['python', "ace/mode/python"],
 
 ] ;
@@ -81,7 +82,12 @@ int main(){
     printf("Hello World!");
     return 0;
 }`
-    ]
+    ],
+    ['php', 
+`<?php
+    echo "Hello World!";
+?>`
+]
 
   ];
 let lang_map = new Map(lang_key)

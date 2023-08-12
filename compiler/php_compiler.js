@@ -1,6 +1,6 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
-let file = 'compiler/lang/javascript.js'
+let file = 'compiler/lang/php.py'
 let folder = 'compiler/lang';
 
 function compile(code){
@@ -16,7 +16,7 @@ function compile(code){
         //console.error('Error writing to file:', err);
     }
     try {
-        const stdout = execSync(`node ${file}`);
+        const stdout = execSync(`php ${file}`);
         // console.log(`stdout: ${stdout.toString()}`);
         result = stdout.toString()
       } catch (error) {
