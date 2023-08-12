@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 let file = 'compiler/lang/c.c';
+
 let folder = 'compiler/lang';
 
 function compile(code){
@@ -24,6 +25,8 @@ function compile(code){
         result = error.toString('utf8')
         // console.error(`Error executing command: ${error}`);
     }
+    fs.unlinkSync(file);
+    fs.unlinkSync('compiler/lang/c.out');
     return {status:status, result:result}
 }
 
