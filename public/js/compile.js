@@ -11,11 +11,39 @@ let lang_ace_arr = [
 ] ;
 let lang_ace_map = new Map(lang_ace_arr);
 
+let theme_arr = [
+    ['Ambiance', 'ace/theme/ambiance'],
+    ['Chaos', 'ace/theme/chaos'],
+    ['Chrome', 'ace/theme/chrome'],
+    ['Cloud9 Day', 'ace/theme/cloud9_day'],
+    ['Cloud9 Night Low Color', 'ace/theme/cloud9_night_low_color'],
+    ['Cloud9 Night', 'ace/theme/cloud9_night'],
+    ['Clouds Midnight', 'ace/theme/clouds_midnight'],
+    ['Clouds', 'ace/theme/clouds'],
+    ['Cobalt', 'ace/theme/cobalt'],
+    ['Crimson Editor', 'ace/theme/crimson_editor'],
+    ['Dawn', 'ace/theme/dawn'],
+    ['Dracula', 'ace/theme/dracula'],
+    ['Dawn', 'ace/theme/dawn'],
+    ['Dreamweaver', 'ace/theme/dreamweaver'],
+    ['Eclipse', 'ace/theme/eclipse'],
+    ['Github Dark', 'ace/theme/github_dark'],
+    ['Github', 'ace/theme/github'],
+    ['Gob', 'ace/theme/go'],
+    ['Monokai', 'ace/theme/monokai'],
+    ['Twilight', 'ace/theme/twilight'],
+    ['Solarized Dark', 'ace/theme/solarized_dark'],
+    ['Solarized Light', 'ace/theme/solarized_light'],
+    ['Terminal', 'ace/theme/terminal'],
+    ['Tomorrow', 'ace/theme/tomorrow'],
+    ['Tomorrow Night', 'ace/theme/tomorrow_night'],
+    ['Xcode', 'ace/theme/xcode']
+];
+let theme_map = new Map(theme_arr);
 
 // editor set up
 var editor = ace.edit("editor")
 editor.setTheme("ace/theme/monokai")
-
 editor.session.setMode("ace/mode/text")
 
 const lang_key = [
@@ -68,6 +96,8 @@ if(compile_button){
                 code : editor.getValue(),
                 language: language.value
             }
+            result.value = "Please wait......"
+            result.style.color = "yellow"
             // console.log(code.value)
             // console.log(language.value)
             console.log(editor.getValue());
@@ -111,7 +141,32 @@ function changeLang(){
             }
             
         }else{
-            code.value = "//Code goes here......"
+            editor.setValue("Code goes here.....")
+        }
+    }
+}
+
+function changeTheme(){
+    let theme_selected = document.getElementById("theme");
+    console.log(theme_selected.value);
+    console.log(theme_map.get(theme_selected.value))
+    if(theme_selected && theme_map.has(theme_selected.value)){
+        console.log("theme must be changed")
+        editor.setTheme(theme_map.get(theme_selected.value))
+        console.log(theme_map.get(theme_selected.value))
+    }
+}
+
+window.onload =(e) =>{
+    let select_theme = document.getElementById('theme');
+    if(select_theme){
+        //select_theme.appendChild(option);
+        for(let i=0;i<theme_arr.length;i++){
+            //let arr = theme_map_arr[i];
+            let option = document.createElement('option');
+            option.value = theme_arr[i][0];
+            option.innerText = theme_arr[i][0];
+            select_theme.appendChild(option);
         }
     }
 }
