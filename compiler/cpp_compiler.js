@@ -24,6 +24,8 @@ function compile(code){
         result = error.toString('utf8')
         // console.error(`Error executing command: ${error}`);
     }
+    fs.unlinkSync(file);
+    fs.unlinkSync('compiler/lang/cplusplus.out');
     return {status:status, result:result}
 }
 
