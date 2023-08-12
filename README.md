@@ -1,3 +1,7 @@
+![Result](https://github.com/kangkan1/online_ide/blob/master/public/images/showing_code_java.png)
+![Error](https://github.com/kangkan1/online_ide/blob/master/public/images/showing_code_error.png)
+
+
 ## Installing project
 ```
 npm install
