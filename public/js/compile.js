@@ -98,16 +98,39 @@ int main(){
   ];
 let lang_map = new Map(lang_key)
 
+function debounce(func, wait) {
+    let timeout;
+
+    return function executedFunction(...args) {
+        const context = this;
+
+        const later = function() {
+            clearTimeout(timeout);
+            func.apply(context, args);
+        };
+
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+const debouncedFunction = debounce(function(lang_map, val, lang_val) {
+    // console.log('to be changed!');
+    // console.log(a);
+    lang_map.set(lang_val, val);
+}, 500);
+
 
 editor.getSession().on('change', function(e) {
     // Code to handle the change event
     // console.log('Editor content changed!');
     // console.log(editor.getValue());
     if(language_change && language_change.value){
-        console.log("changed")
-        lang_map.set(language_change.value, editor.getValue())
+        //console.log("changed")
+        debouncedFunction(lang_map, editor.getValue(), language_change.value)
+        // lang_map.set(language_change.value, editor.getValue())
     }else{
-        console.log("not changed")
+        //console.log("not changed")
     }
 });
 
