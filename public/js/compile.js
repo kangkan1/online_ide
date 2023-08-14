@@ -1,5 +1,8 @@
 let compile_button = document.getElementById("compile_button")
 let language_change = document.getElementById("language");
+let should_custom_input = document.getElementById("should_custom_input");
+let custom_input_div = document.getElementById("custom_input_div");
+let custom_input = document.getElementById("custom_input");
 
 let lang_ace_arr = [
     [ 'c', "ace/mode/c_cpp"],
@@ -100,7 +103,11 @@ if(compile_button){
         if( language && language.value !== "Select"){
             let data = {
                 code : editor.getValue(),
-                language: language.value
+                language: language.value,
+                custom_input: ''
+            }
+            if(should_custom_input.checked){
+                data['custom_input'] = custom_input.value
             }
             result.value = "Please wait......"
             result.style.color = "yellow"
@@ -176,4 +183,14 @@ window.onload =(e) =>{
         }
     }
 }
+
+should_custom_input.addEventListener('change', function(){
+    if(this.checked){
+        custom_input_div.style.display = "block";
+        console.log("Checkbox is now checked.");
+    }else{
+        custom_input_div.style.display = "none";
+        console.log("Checkbox is now not checked.");
+    }
+})
 
