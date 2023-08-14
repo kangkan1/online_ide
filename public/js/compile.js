@@ -3,6 +3,7 @@ let language_change = document.getElementById("language");
 let should_custom_input = document.getElementById("should_custom_input");
 let custom_input_div = document.getElementById("custom_input_div");
 let custom_input = document.getElementById("custom_input");
+let compile_time = document.getElementById("compile_time");
 
 let lang_ace_arr = [
     [ 'c', "ace/mode/c_cpp"],
@@ -121,14 +122,21 @@ if(compile_button){
                 if (this.readyState == 4 && this.status == 200) {
                 // Typical action to be performed when the document is ready:
                 // document.getElementById("demo").innerHTML = xhttp.responseText;
-                    console.log(xhttp.responseText)
+                    //console.log(xhttp.responseText)
                     let response = JSON.parse(xhttp.responseText)
                     if(response.status === 'ok'){
-                        result.value = response.result
+                        
+                        result.value = response.result;
+                        if(response.time)
+                            compile_time.innerText = response.time;
+                        else
+                            compile_time.style.display = "none";
+                        
                         result.style.color = "green"
                     }else if(response.status === 'fail'){
                         result.value = response.result
-                        result.style.color = 'red'
+                        result.style.color = 'red';
+                        compile_time.innerText = null;
                     }
                 
                 }

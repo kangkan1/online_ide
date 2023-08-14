@@ -6,8 +6,7 @@ let folder = 'compiler/lang';
 function compile(code, custom_input=""){
     let result  = ""
     let status = "ok"
-    console.log(code)
-    console.log(custom_input)
+    let time = "";
     try {
         fs.writeFileSync(file, code);
         //console.log('Successfully wrote to file');
@@ -17,9 +16,14 @@ function compile(code, custom_input=""){
         //console.error('Error writing to file:', err);
     }
     try {
+        let startTime = process.hrtime();
         const stdout = execSync(`cd ${folder} &&  g++ cplusplus.cpp -o cplusplus.out && echo "${custom_input}" | ./cplusplus.out`, {
             timeout:5000
         });
+        let diff = process.hrtime(startTime);
+        // console.log(diff)
+        let elapsedTime = diff[0] * 1e3 + diff[1] * 1e-6;  // Convert to milliseconds
+        time = "Compile time: "+elapsedTime.toFixed(3) +" ms";
         // console.log(`stdout: ${stdout.toString()}`);
         result = stdout.toString()
       } catch (error) {
@@ -34,7 +38,7 @@ function compile(code, custom_input=""){
 
     }
     
-    return {status:status, result:result}
+    return {status:status, result:result, time:time}
 }
 
 module.exports = {
