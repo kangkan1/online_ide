@@ -7,6 +7,7 @@ let folder = 'compiler/lang';
 function compile(code, custom_input){
     let result  = ""
     let status = "ok"
+    let time = "";
     // console.log(custom_input)
     // custom_input = custom_input.replace("\n", " ");
     // console.log(custom_input)
@@ -19,9 +20,15 @@ function compile(code, custom_input){
         //console.error('Error writing to file:', err);
     }
     try {
+        let startTime = process.hrtime();
         const stdout = execSync(`cd ${folder} &&  gcc c.c -o c.out && echo "${custom_input}" | ./c.out `, {
             timeout:5000
         });
+        let diff = process.hrtime(startTime);
+        // console.log(diff)
+        let elapsedTime = diff[0] * 1e3 + diff[1] * 1e-6;  // Convert to milliseconds
+        time = "Compile time: "+elapsedTime.toFixed(3) +" ms";
+        // console.log(`Elapsed Time: ${elapsedTime} ms`);
         // console.log(`stdout: ${stdout.toString()}`);
         result = stdout.toString()
     } catch (error) {
@@ -35,7 +42,7 @@ function compile(code, custom_input){
     }catch (error) {
     }   
     
-    return {status:status, result:result}
+    return {status:status, result:result, time:time}
 }
 
 module.exports = {

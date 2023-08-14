@@ -22,22 +22,22 @@ module.exports.compile = function(req, res){
     let status = "ok"
     if(body.language === 'python'){
         let compile = python.compile(body.code, body.custom_input)
-        return res.send({status:compile.status, result:compile.result})
+        return res.send(compile)
     }else if(body.language === 'js'){
         let compile = javascript.compile(body.code, body.custom_input)
-        return res.send({status:compile.status, result:compile.result})
+        return res.send(compile)
     }else if(body.language === 'java'){
         let compile = java.compile(body.code, body.custom_input)
         return res.send({status:compile.status, result:compile.result})
     }else if(body.language === 'cpp'){
         let compile = cpp.compile(body.code, body.custom_input)
-        return res.send({status:compile.status, result:compile.result})
+        return res.send(compile)
     }else if(body.language === 'c'){
         let compile = c.compile(body.code, body.custom_input)
-        return res.send({status:compile.status, result:compile.result})
+        return res.send(compile)
     }else if(body.language === 'php'){
         let compile = php.compile(body.code, body.custom_input)
-        return res.send({status:compile.status, result:compile.result})
+        return res.send(compile)
     }
     else{
         return res.send({status:'fail', result:'Currently configured only for this language'})
