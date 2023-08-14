@@ -57,9 +57,18 @@
             <button class="btn btn-primary" id="compile_button">Compile</button>
             <hr />
             <div class="mb-3 mx-2">
+              <input type="checkbox"  id="should_custom_input" value="yes"/>
+              <label for="code" class="form-label">Enter Custom Input</label>
+              <div id="custom_input_div" style="display: none;">
+                <textarea class="form-control" id="custom_input" rows="5" placeholder="Enter Custom Input"></textarea>
+              </div>
+              
+            </div>
+            <hr />
+            <div class="mb-3 mx-2">
               <label for="code" class="form-label">Result</label>
               <textarea class="form-control" id="result" rows="10" disabled></textarea>
-          </div>
+            </div>
         </div>
         <hr />  
     </body>

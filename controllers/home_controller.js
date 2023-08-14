@@ -33,7 +33,7 @@ module.exports.compile = function(req, res){
         let compile = cpp.compile(body.code)
         return res.send({status:compile.status, result:compile.result})
     }else if(body.language === 'c'){
-        let compile = c.compile(body.code)
+        let compile = c.compile(body.code, body.custom_input)
         return res.send({status:compile.status, result:compile.result})
     }else if(body.language === 'php'){
         let compile = php.compile(body.code)
