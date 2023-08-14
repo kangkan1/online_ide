@@ -19,7 +19,7 @@ function compile(code, custom_input){
         //console.error('Error writing to file:', err);
     }
     try {
-        const stdout = execSync(`cd ${folder} &&  gcc c.c -o c.out && echo ${custom_input} | ./c.out `, {
+        const stdout = execSync(`cd ${folder} &&  gcc c.c -o c.out && echo "${custom_input}" | ./c.out `, {
             timeout:5000
         });
         // console.log(`stdout: ${stdout.toString()}`);

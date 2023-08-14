@@ -21,22 +21,22 @@ module.exports.compile = function(req, res){
     let result  = ""
     let status = "ok"
     if(body.language === 'python'){
-        let compile = python.compile(body.code)
+        let compile = python.compile(body.code, body.custom_input)
         return res.send({status:compile.status, result:compile.result})
     }else if(body.language === 'js'){
-        let compile = javascript.compile(body.code)
+        let compile = javascript.compile(body.code, body.custom_input)
         return res.send({status:compile.status, result:compile.result})
     }else if(body.language === 'java'){
-        let compile = java.compile(body.code)
+        let compile = java.compile(body.code, body.custom_input)
         return res.send({status:compile.status, result:compile.result})
     }else if(body.language === 'cpp'){
-        let compile = cpp.compile(body.code)
+        let compile = cpp.compile(body.code, body.custom_input)
         return res.send({status:compile.status, result:compile.result})
     }else if(body.language === 'c'){
         let compile = c.compile(body.code, body.custom_input)
         return res.send({status:compile.status, result:compile.result})
     }else if(body.language === 'php'){
-        let compile = php.compile(body.code)
+        let compile = php.compile(body.code, body.custom_input)
         return res.send({status:compile.status, result:compile.result})
     }
     else{

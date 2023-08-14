@@ -3,7 +3,7 @@ const fs = require('fs');
 let file = 'compiler/lang/Main.java'
 let folder = 'compiler/lang';
 
-function compile(code){
+function compile(code, custom_input=""){
     let result  = ""
     let status = "ok"
     console.log(code)
@@ -17,7 +17,7 @@ function compile(code){
     }
     try {
         console.log(`javac ${file} && java Main`)
-        const stdout = execSync(`cd ${folder} &&  javac Main.java && java Main`);
+        const stdout = execSync(`cd ${folder} &&  javac Main.java && echo "${custom_input}" | java Main`);
         // console.log(`stdout: ${stdout.toString()}`);
         result = stdout.toString()
       } catch (error) {
@@ -25,8 +25,13 @@ function compile(code){
         result = error.toString('utf8')
         // console.error(`Error executing command: ${error}`);
     }
-    fs.unlinkSync(file);
-    fs.unlinkSync('compiler/lang/Main.class');
+    try{
+        fs.unlinkSync(file);
+        fs.unlinkSync('compiler/lang/Main.class');
+    }catch (error) {
+
+    }
+    
     return {status:status, result:result}
 }
 
