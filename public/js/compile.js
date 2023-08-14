@@ -129,7 +129,8 @@ if(compile_button){
                         result.value = response.result;
                         if(response.time)
                             compile_time.innerText = response.time;
-                        
+                        else
+                            compile_time.style.display = "none";
                         
                         result.style.color = "green"
                     }else if(response.status === 'fail'){

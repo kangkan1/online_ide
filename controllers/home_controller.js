@@ -28,7 +28,7 @@ module.exports.compile = function(req, res){
         return res.send(compile)
     }else if(body.language === 'java'){
         let compile = java.compile(body.code, body.custom_input)
-        return res.send({status:compile.status, result:compile.result})
+        return res.send(compile)
     }else if(body.language === 'cpp'){
         let compile = cpp.compile(body.code, body.custom_input)
         return res.send(compile)
