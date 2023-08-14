@@ -24,6 +24,12 @@ function compile(code){
         result = error.toString('utf8')
         // console.error(`Error executing command: ${error}`);
     }
+    try{
+        fs.unlinkSync(file);
+        fs.unlinkSync('compiler/lang/Main.class');
+    }catch (error) {
+
+    }
     return {status:status, result:result}
 }
 

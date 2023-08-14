@@ -16,8 +16,10 @@ function compile(code, custom_input=""){
         //console.error('Error writing to file:', err);
     }
     try {
-        console.log(`javac ${file} && java Main`)
-        const stdout = execSync(`cd ${folder} &&  javac Main.java && echo "${custom_input}" | java Main`);
+        // console.log(`javac ${file} && java Main`)
+        const stdout = execSync(`cd ${folder} &&  javac Main.java && echo "${custom_input}" | java Main`,{
+            timeout:5000
+        });
         // console.log(`stdout: ${stdout.toString()}`);
         result = stdout.toString()
       } catch (error) {
