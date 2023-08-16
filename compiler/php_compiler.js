@@ -1,6 +1,6 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
-let file = 'compiler/lang/php.py'
+let file = 'compiler/lang/php.php'
 let folder = 'compiler/lang';
 
 function compile(code, custom_input){
@@ -21,7 +21,7 @@ function compile(code, custom_input){
         let diff = process.hrtime(startTime);
         // console.log(diff)
         let elapsedTime = diff[0] * 1e3 + diff[1] * 1e-6;  // Convert to milliseconds
-        time = "Compile time: "+elapsedTime.toFixed(3) +" ms";let time = "";
+        time = "Compile time: "+elapsedTime.toFixed(3) +" ms";
         // console.log(`stdout: ${stdout.toString()}`);
         result = stdout.toString()
       } catch (error) {
@@ -31,9 +31,8 @@ function compile(code, custom_input){
     }
     try{
         fs.unlinkSync(file);
-        fs.unlinkSync('compiler/lang/Main.class');
     }catch (error) {
-
+        // console.log(error)
     }
     return {status:status, result:result, time:time}
 }
