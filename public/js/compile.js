@@ -5,6 +5,12 @@ let custom_input_div = document.getElementById("custom_input_div");
 let custom_input = document.getElementById("custom_input");
 let compile_time = document.getElementById("compile_time");
 
+// editor set up
+var editor = ace.edit("editor")
+editor.setTheme("ace/theme/monokai")
+editor.session.setMode("ace/mode/text")
+
+
 let lang_ace_arr = [
     [ 'c', "ace/mode/c_cpp"],
     ['cpp', "ace/mode/c_cpp"],
@@ -46,10 +52,6 @@ let theme_arr = [
 ];
 let theme_map = new Map(theme_arr);
 
-// editor set up
-var editor = ace.edit("editor")
-editor.setTheme("ace/theme/monokai")
-editor.session.setMode("ace/mode/text")
 
 const lang_key = [
     ["js", 
@@ -95,6 +97,42 @@ int main(){
 
   ];
 let lang_map = new Map(lang_key)
+
+function debounce(func, wait) {
+    let timeout;
+
+    return function executedFunction(...args) {
+        const context = this;
+
+        const later = function() {
+            clearTimeout(timeout);
+            func.apply(context, args);
+        };
+
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+const debouncedFunction = debounce(function(lang_map, val, lang_val) {
+    // console.log('to be changed!');
+    // console.log(a);
+    lang_map.set(lang_val, val);
+}, 500);
+
+
+editor.getSession().on('change', function(e) {
+    // Code to handle the change event
+    // console.log('Editor content changed!');
+    // console.log(editor.getValue());
+    if(language_change && language_change.value){
+        //console.log("changed")
+        debouncedFunction(lang_map, editor.getValue(), language_change.value)
+        // lang_map.set(language_change.value, editor.getValue())
+    }else{
+        //console.log("not changed")
+    }
+});
 
 if(compile_button){
     compile_button.addEventListener("click", (e)=>{
