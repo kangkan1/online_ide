@@ -17,7 +17,7 @@ function compile(code, custom_input){
     }
     try {
         let startTime = process.hrtime();
-        const stdout = execSync(`php ${file}`);
+        const stdout = execSync(`echo "${custom_input}" | php ${file}`);
         let diff = process.hrtime(startTime);
         // console.log(diff)
         let elapsedTime = diff[0] * 1e3 + diff[1] * 1e-6;  // Convert to milliseconds
